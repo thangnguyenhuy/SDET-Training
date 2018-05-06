@@ -1,4 +1,5 @@
 require 'app'
+require_relative '../../lib/item.rb'
 
 describe Todo do
   before do
@@ -37,6 +38,17 @@ describe Todo do
     @task.mark_done('Task B')
     expect(@task.undone_list).to eq ['Task A']
     expect(@task.done_list).to eq ['Task B', 'Task C']
+  end
+
+
+  it "mark some tasks as undone" do
+    @task.add_task('Task A', true)
+    @task.add_task('Task B', true)
+    @task.add_task('Task C', true)
+    @task.mark_undone('Task A')
+    @task.mark_undone('Task B')
+    expect(@task.undone_list).to eq ['Task A', 'Task B']
+    expect(@task.done_list).to eq ['Task C']
   end
 
   it "edits a name of task" do
