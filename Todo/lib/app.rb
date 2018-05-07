@@ -50,4 +50,9 @@ class Todo
       end
     end
   end
+
+  def search_task(task)
+    get_list_name(@task).select { |item| item.downcase.include?(task.downcase) }
+  end
+
 end

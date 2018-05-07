@@ -64,4 +64,20 @@ describe Todo do
     expect(@task.done_list).to eq ['Task new edit']
     expect(@task.undone_list).to eq []
   end
+
+  it "seach a task from tasks list" do
+    @task.add_task('Wash bike', false)
+    @task.add_task('Do exercise', false)
+    @task.add_task('Standup team', true)
+    expect(@task.search_task('Wash bike')).to eq ['Wash bike']
+  end
+
+  it "seach multiple task from tasks list" do
+    @task.add_task('Task A', false)
+    @task.add_task('Task B', false)
+    @task.add_task('Play with SDET task', false)
+    @task.add_task('Write Todo app', true)
+    expect(@task.tasks_list).to eq ['Task A', 'Task B', 'Play with SDET task', 'Write Todo app']
+    expect(@task.search_task('task')).to eq ['Task A', 'Task B', 'Play with SDET task']
+  end
 end
